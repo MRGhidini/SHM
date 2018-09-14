@@ -52,6 +52,9 @@ Example of files through website
 
 ![Screenshot](img/afterdonwload.png)
 
+# Compile the source
+
+Copy the entire SHM folder to your pc and use Visual Studio 2017
 
 ## Special thanks  
 - Nukasnel for test
