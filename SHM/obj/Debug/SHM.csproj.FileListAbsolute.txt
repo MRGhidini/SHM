@@ -1,0 +1,12 @@
+C:\Users\FREEGROUP\Desktop\Projetos\SHM\SHM\bin\Debug\SHM.exe.config
+C:\Users\FREEGROUP\Desktop\Projetos\SHM\SHM\bin\Debug\SHM.exe
+C:\Users\FREEGROUP\Desktop\Projetos\SHM\SHM\bin\Debug\SHM.pdb
+C:\Users\FREEGROUP\Desktop\Projetos\SHM\SHM\obj\Debug\SHM.csprojResolveAssemblyReference.cache
+C:\Users\FREEGROUP\Desktop\Projetos\SHM\SHM\obj\Debug\SHM.Main.resources
+C:\Users\FREEGROUP\Desktop\Projetos\SHM\SHM\obj\Debug\SHM.Properties.Resources.resources
+C:\Users\FREEGROUP\Desktop\Projetos\SHM\SHM\obj\Debug\SHM.csproj.GenerateResource.Cache
+C:\Users\FREEGROUP\Desktop\Projetos\SHM\SHM\obj\Debug\SHM.csproj.CoreCompileInputs.cache
+C:\Users\FREEGROUP\Desktop\Projetos\SHM\SHM\obj\Debug\SHM.exe
+C:\Users\FREEGROUP\Desktop\Projetos\SHM\SHM\obj\Debug\SHM.pdb
+C:\Users\FREEGROUP\Desktop\Projetos\SHM\SHM\obj\Debug\SHM.OptionsSet.resources
+C:\Users\FREEGROUP\Desktop\Projetos\SHM\SHM\obj\Debug\SHM.FormGetHomebrew.resources
