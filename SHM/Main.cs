@@ -238,13 +238,13 @@ namespace SHM
             //throw new NotImplementedException();
             if (e.Cancelled == true)
             {
-                //FileSystem.DeleteFile(path + "PKG-h-encore\\xGMrXOkORxWRyqzLMihZPqsXAbAXLzvAdJFqtPJLAZTgOcqJobxQAhLNbgiFydVlcmVOrpZKklOYxizQCRpiLfjeROuWivGXfwgkq.pkg");
+                //xGMrXOkORxWRyqzLMihZPqsXAbAXLzvAdJFqtPJLAZTgOcqJobxQAhLNbgiFydVlcmVOrpZKklOYxizQCRpiLfjeROuWivGXfwgkq");
                 MessageBox.Show("Download canceled.", "Download canceled", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
             else if (e.Error != null) // We have an error! Retry a few times, then abort.
             {
-                //FileSystem.DeleteFile(path + "PKG-h-encore\\xGMrXOkORxWRyqzLMihZPqsXAbAXLzvAdJFqtPJLAZTgOcqJobxQAhLNbgiFydVlcmVOrpZKklOYxizQCRpiLfjeROuWivGXfwgkq.pkg");
+                //xGMrXOkORxWRyqzLMihZPqsXAbAXLzvAdJFqtPJLAZTgOcqJobxQAhLNbgiFydVlcmVOrpZKklOYxizQCRpiLfjeROuWivGXfwgkq
                 MessageBox.Show("An error ocurred while trying to download file: " + e.Error, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
