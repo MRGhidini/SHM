@@ -63,3 +63,4 @@ Copy the entire SHM folder to your pc and use Visual Studio 2017
 ## Special thanks  
 - Nukasnel for test
 - Berg for test
+- rinnegatamante for the communication via rest json do vitadb
