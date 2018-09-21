@@ -46,6 +46,7 @@ namespace SHM
             this.button9 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.checkVitadb = new System.Windows.Forms.CheckBox();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -83,6 +84,7 @@ namespace SHM
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.checkVitadb);
             this.groupBox2.Controls.Add(this.textPSV);
             this.groupBox2.Controls.Add(this.textPS3);
             this.groupBox2.Controls.Add(this.textPS4);
@@ -95,30 +97,30 @@ namespace SHM
             this.groupBox2.Controls.Add(this.textDownload);
             this.groupBox2.Controls.Add(this.button9);
             this.groupBox2.Controls.Add(this.button6);
-            this.groupBox2.Location = new System.Drawing.Point(7, 20);
+            this.groupBox2.Location = new System.Drawing.Point(7, 19);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(442, 128);
+            this.groupBox2.Size = new System.Drawing.Size(442, 150);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "HomeBrew";
             // 
             // textPSV
             // 
-            this.textPSV.Location = new System.Drawing.Point(99, 20);
+            this.textPSV.Location = new System.Drawing.Point(99, 41);
             this.textPSV.Name = "textPSV";
             this.textPSV.Size = new System.Drawing.Size(242, 20);
             this.textPSV.TabIndex = 36;
             // 
             // textPS3
             // 
-            this.textPS3.Location = new System.Drawing.Point(99, 45);
+            this.textPS3.Location = new System.Drawing.Point(99, 66);
             this.textPS3.Name = "textPS3";
             this.textPS3.Size = new System.Drawing.Size(242, 20);
             this.textPS3.TabIndex = 35;
             // 
             // textPS4
             // 
-            this.textPS4.Location = new System.Drawing.Point(99, 68);
+            this.textPS4.Location = new System.Drawing.Point(99, 89);
             this.textPS4.Name = "textPS4";
             this.textPS4.Size = new System.Drawing.Size(242, 20);
             this.textPS4.TabIndex = 34;
@@ -126,7 +128,7 @@ namespace SHM
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(9, 22);
+            this.label4.Location = new System.Drawing.Point(9, 43);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 13);
             this.label4.TabIndex = 11;
@@ -134,7 +136,7 @@ namespace SHM
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(359, 18);
+            this.button3.Location = new System.Drawing.Point(359, 39);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 1;
@@ -145,7 +147,7 @@ namespace SHM
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(9, 48);
+            this.label7.Location = new System.Drawing.Point(9, 69);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(44, 13);
             this.label7.TabIndex = 20;
@@ -153,7 +155,7 @@ namespace SHM
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(359, 43);
+            this.button5.Location = new System.Drawing.Point(359, 64);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 23);
             this.button5.TabIndex = 3;
@@ -164,7 +166,7 @@ namespace SHM
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(9, 100);
+            this.label11.Location = new System.Drawing.Point(9, 121);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(80, 13);
             this.label11.TabIndex = 33;
@@ -173,7 +175,7 @@ namespace SHM
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(9, 74);
+            this.label8.Location = new System.Drawing.Point(9, 95);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(44, 13);
             this.label8.TabIndex = 24;
@@ -181,14 +183,14 @@ namespace SHM
             // 
             // textDownload
             // 
-            this.textDownload.Location = new System.Drawing.Point(99, 93);
+            this.textDownload.Location = new System.Drawing.Point(99, 114);
             this.textDownload.Name = "textDownload";
             this.textDownload.Size = new System.Drawing.Size(242, 20);
             this.textDownload.TabIndex = 6;
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(359, 93);
+            this.button9.Location = new System.Drawing.Point(359, 114);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(75, 23);
             this.button9.TabIndex = 7;
@@ -198,7 +200,7 @@ namespace SHM
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(359, 68);
+            this.button6.Location = new System.Drawing.Point(359, 89);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(75, 23);
             this.button6.TabIndex = 5;
@@ -211,14 +213,25 @@ namespace SHM
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Location = new System.Drawing.Point(6, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(457, 156);
+            this.groupBox1.Size = new System.Drawing.Size(457, 180);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "TSV files or URL links";
             // 
+            // checkVitadb
+            // 
+            this.checkVitadb.AutoSize = true;
+            this.checkVitadb.Location = new System.Drawing.Point(112, 18);
+            this.checkVitadb.Name = "checkVitadb";
+            this.checkVitadb.Size = new System.Drawing.Size(234, 17);
+            this.checkVitadb.TabIndex = 37;
+            this.checkVitadb.Text = "To use vitadb (rinnegatamante) for psvita list";
+            this.checkVitadb.UseVisualStyleBackColor = true;
+            this.checkVitadb.CheckedChanged += new System.EventHandler(this.checkVitadb_CheckedChanged);
+            // 
             // OptionsSet
             // 
-            this.ClientSize = new System.Drawing.Size(470, 176);
+            this.ClientSize = new System.Drawing.Size(470, 204);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.textBox6);
@@ -261,6 +274,7 @@ namespace SHM
         private System.Windows.Forms.TextBox textPSV;
         private System.Windows.Forms.TextBox textPS3;
         private System.Windows.Forms.TextBox textPS4;
+        private System.Windows.Forms.CheckBox checkVitadb;
     }
 }
 

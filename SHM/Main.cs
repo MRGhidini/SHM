@@ -68,7 +68,7 @@ namespace SHM
                     Psvita.Checked = false;
                     return;
                 }
-                if (!Utilitary.Verifythers(TypeRege.PathPsvita.ToString()))
+                if (!Utilitary.Verifythersvita(TypeRege.PathPsvita.ToString()))
                 {
                     OptionsSet o = new OptionsSet();
                     o.ShowDialog();
@@ -238,13 +238,13 @@ namespace SHM
             //throw new NotImplementedException();
             if (e.Cancelled == true)
             {
-                //xGMrXOkORxWRyqzLMihZPqsXAbAXLzvAdJFqtPJLAZTgOcqJobxQAhLNbgiFydVlcmVOrpZKklOYxizQCRpiLfjeROuWivGXfwgkq");
+                //FileSystem.DeleteFile(path + "PKG-h-encore\\xGMrXOkORxWRyqzLMihZPqsXAbAXLzvAdJFqtPJLAZTgOcqJobxQAhLNbgiFydVlcmVOrpZKklOYxizQCRpiLfjeROuWivGXfwgkq.pkg");
                 MessageBox.Show("Download canceled.", "Download canceled", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
             else if (e.Error != null) // We have an error! Retry a few times, then abort.
             {
-                //xGMrXOkORxWRyqzLMihZPqsXAbAXLzvAdJFqtPJLAZTgOcqJobxQAhLNbgiFydVlcmVOrpZKklOYxizQCRpiLfjeROuWivGXfwgkq
+                //FileSystem.DeleteFile(path + "PKG-h-encore\\xGMrXOkORxWRyqzLMihZPqsXAbAXLzvAdJFqtPJLAZTgOcqJobxQAhLNbgiFydVlcmVOrpZKklOYxizQCRpiLfjeROuWivGXfwgkq.pkg");
                 MessageBox.Show("An error ocurred while trying to download file: " + e.Error, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }

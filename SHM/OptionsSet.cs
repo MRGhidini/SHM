@@ -34,6 +34,20 @@ namespace SHM
                 textPS3.Text = SetConfigRegistry.ReadRegistry("PathPS3");
                 textPS4.Text = SetConfigRegistry.ReadRegistry("PathPS4");
                 textDownload.Text = SetConfigRegistry.ReadRegistry("PathDownload");
+
+                if (!SetConfigRegistry.ReadRegistry("OptionVitaDB").Equals(""))
+                {
+                    checkVitadb.Checked = true;
+                    textPSV.Enabled = false;
+                    button3.Enabled = false;
+                }
+                else
+                {
+                    checkVitadb.Checked = false;
+                    textPSV.Enabled = true;
+                    button3.Enabled = true;
+                }
+                
             }
             catch (Exception ex)
             {
@@ -52,6 +66,14 @@ namespace SHM
             SetConfigRegistry.RecordRegistry("PathPS3", textPS3.Text);
             SetConfigRegistry.RecordRegistry("PathPS4", textPS4.Text);
             SetConfigRegistry.RecordRegistry("PathDownload", textDownload.Text);
+            if (checkVitadb.Checked)
+            {
+                SetConfigRegistry.RecordRegistry("OptionVitaDB", "Y");
+            }
+            else
+            {
+                SetConfigRegistry.RecordRegistry("OptionVitaDB", "");
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -105,6 +127,20 @@ namespace SHM
         private void button9_Click(object sender, EventArgs e)
         {
             ShowOpenPathWindow(textDownload);
+        }
+
+        private void checkVitadb_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkVitadb.Checked)
+            {
+                textPSV.Enabled = false;
+                button3.Enabled = false;
+            }
+            else
+            {
+                textPSV.Enabled = true;
+                button3.Enabled = true;
+            }
         }
     }
 }

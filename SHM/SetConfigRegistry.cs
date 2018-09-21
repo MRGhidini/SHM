@@ -22,6 +22,7 @@ public class SetConfigRegistry
             Registry.SetValue(keyName, "PathPS3", "");
             Registry.SetValue(keyName, "PathPS4", "");
             Registry.SetValue(keyName, "PathDownload", "");
+            Registry.SetValue(keyName, "OptionVitaDB", "");
             registrykeyCreate.Close();
 
             MessageBox.Show("Configuration settings created successfully, the program will be closed, this process happens only once to create the configuration settings", "Setting", MessageBoxButtons.OK, MessageBoxIcon.Information);

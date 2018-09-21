@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Web.Script.Serialization;
 
 namespace SHM
 {
@@ -91,14 +89,89 @@ namespace SHM
             gamesDbs.Clear();
             if (!this.TypeConsole.Equals(""))
             {
-                LoadDatabase_sync(SetConfigRegistry.ReadRegistry(TypeConsole), (vita) =>
-                {
-                    gamesDbs.AddRange(vita);
-                    RefreshList(gamesDbs);
-                });
+                string psvitadb = SetConfigRegistry.ReadRegistry("OptionVitaDB");
+                string pathlist = SetConfigRegistry.ReadRegistry(TypeConsole);
+
+                if (psvitadb == "Y" && TypeConsole == "PathPsvita")
+                    {
+                        LoadVitadb_sync("http://rinnegatamante.it/vitadb/list_hbs_json.php", (vita) =>
+                        {
+                            gamesDbs.AddRange(vita);
+                            RefreshList(gamesDbs);
+                        });
+                    }
+                else
+                    {
+                        LoadDatabase_sync(pathlist, (vita) =>
+                        {
+                            gamesDbs.AddRange(vita);
+                            RefreshList(gamesDbs);
+                        });
+                    }
             }
             
 
+        }
+
+        public class VitaDB
+        {
+            public string titleid { get; set; }
+            public string name { get; set; }
+            public string author { get; set; }
+            public string version { get; set; }
+            public string url { get; set; }
+            public string source { get; set; }
+            public string release_page { get; set; }            
+
+        }
+
+        private void LoadVitadb_sync(string path, Action<List<Item>> result)// bool addDlc = false, bool isDLC = false, bool isPsm = false)
+        {
+            List<Item> dbs = new List<Item>();
+            if (string.IsNullOrEmpty(path))
+                result.Invoke(dbs);
+            else
+            {
+                path = new Uri(path).ToString();
+
+                try
+                {
+                    WebClient wc = new WebClient();
+                    string content = wc.DownloadString(new Uri(path));
+                    wc.Dispose();
+                    content = Encoding.UTF8.GetString(Encoding.Default.GetBytes(content));
+                    JavaScriptSerializer JsonConvert = new JavaScriptSerializer();
+                    List<VitaDB> ro = JsonConvert.Deserialize<List<VitaDB>>(content);
+                    for (int i = 1; i < ro.Count; i++)
+
+                        {
+
+                            var itm = new Item();
+
+                            itm.TitleId = ro[i].titleid;
+                            itm.TitleName = ro[i].name;
+                            itm.Author = ro[i].author;
+                            itm.Version = ro[i].version;
+                            itm.LastDirectLink = ro[i].url;
+                            if (string.IsNullOrWhiteSpace(ro[i].source))
+                            {
+                                itm.ReadmeLink = ro[i].release_page;
+                            }
+                            else
+                            {
+                                itm.ReadmeLink = ro[i].source;
+                            }                            
+
+                            if (itm.LastDirectLink.ToLower().Contains("https://"))
+                            {
+                                dbs.Add(itm);
+                            }
+                        }
+
+                }
+                catch (Exception err) { }
+                result.Invoke(dbs);
+            }
         }
 
 
@@ -192,7 +265,16 @@ namespace SHM
 
         private void linkGitHub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start(linkGitHub.Tag.ToString());
+            try
+            {
+                System.Diagnostics.Process.Start(linkGitHub.Tag.ToString());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message,"Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+           
         }
 
         private void linkYoutube_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

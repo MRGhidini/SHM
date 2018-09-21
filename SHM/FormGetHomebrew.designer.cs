@@ -65,9 +65,9 @@
             this.colAuthor,
             this.colVersion});
             this.lstTitles.FullRowSelect = true;
-            this.lstTitles.Location = new System.Drawing.Point(6, 2);
+            this.lstTitles.Location = new System.Drawing.Point(15, 2);
             this.lstTitles.Name = "lstTitles";
-            this.lstTitles.Size = new System.Drawing.Size(582, 208);
+            this.lstTitles.Size = new System.Drawing.Size(599, 208);
             this.lstTitles.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lstTitles.TabIndex = 37;
             this.lstTitles.UseCompatibleStateImageBehavior = false;
@@ -82,12 +82,12 @@
             // colName
             // 
             this.colName.Text = "Homebrew";
-            this.colName.Width = 207;
+            this.colName.Width = 205;
             // 
             // colAuthor
             // 
             this.colAuthor.Text = "Author";
-            this.colAuthor.Width = 193;
+            this.colAuthor.Width = 210;
             // 
             // colVersion
             // 
@@ -102,7 +102,7 @@
             this.groupBox2.Controls.Add(this.LabelNameHomebrewFix);
             this.groupBox2.Controls.Add(this.linkYoutube);
             this.groupBox2.Controls.Add(this.linkGitHub);
-            this.groupBox2.Location = new System.Drawing.Point(604, 6);
+            this.groupBox2.Location = new System.Drawing.Point(620, 6);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(192, 204);
             this.groupBox2.TabIndex = 63;
@@ -172,10 +172,10 @@
             this.linkGitHub.AutoSize = true;
             this.linkGitHub.Location = new System.Drawing.Point(32, 113);
             this.linkGitHub.Name = "linkGitHub";
-            this.linkGitHub.Size = new System.Drawing.Size(126, 13);
+            this.linkGitHub.Size = new System.Drawing.Size(118, 13);
             this.linkGitHub.TabIndex = 64;
             this.linkGitHub.TabStop = true;
-            this.linkGitHub.Text = "Open link readme GitHub";
+            this.linkGitHub.Text = "Release page / Source";
             this.linkGitHub.Visible = false;
             this.linkGitHub.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkGitHub_LinkClicked);
             // 
@@ -194,7 +194,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(808, 256);
+            this.ClientSize = new System.Drawing.Size(827, 256);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.lstTitles);

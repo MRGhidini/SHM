@@ -83,7 +83,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(173, 13);
             this.label1.TabIndex = 51;
-            this.label1.Text = "Sony Homebrew Manager 1.0";
+            this.label1.Text = "Sony Homebrew Manager 1.1";
             // 
             // linkLabel2
             // 

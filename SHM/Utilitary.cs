@@ -76,7 +76,21 @@ namespace SHM
 
             if (string.IsNullOrWhiteSpace(Ps))
             {
-                MessageBox.Show("04-First set the Psvita/PS3/PS4 tsv path in the Setting option", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("04-First set the PS3/PS4 tsv path in the Setting option", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
+
+            return true;
+        }
+
+        public static bool Verifythersvita(string pstype)
+        {
+            string Ps = SetConfigRegistry.ReadRegistry(pstype);
+            string psvitadb = SetConfigRegistry.ReadRegistry("OptionVitaDB");
+
+            if (string.IsNullOrWhiteSpace(Ps) && string.IsNullOrWhiteSpace(psvitadb))
+            {
+                MessageBox.Show("05-First set the Psvita tsv path in the Setting option or use vitadb by ticking the setting option for list homebrews", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;
             }
 
