@@ -33,6 +33,10 @@ Example of files through website
 
 ![Screenshot](img/pathlink.PNG)
 
+For version 1.1 and higher you can integrate with the option vitadb (rinnegatamante) for Psvita, to use just check the option below. (Communication with vitadb is rest json)
+
+![Screenshot](img/vitadb.png)
+
 
 # How to use
 
