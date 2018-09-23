@@ -65,3 +65,4 @@ Copy the entire SHM folder to your pc and use Visual Studio 2017
 - Berg for test
 - GamersRebirthDL thanks for all your publications and your collaboration for test
 - rinnegatamante for the communication via rest json do vitadb
+- theheroGAC Thank you for updating the list of homebrews
