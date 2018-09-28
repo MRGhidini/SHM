@@ -20,12 +20,16 @@ namespace SHM.UI.ViewModel
     {
         public HomebrewsViewModel(ViewModelLocator locator) : base(locator)
         {
+            LaunchCommand = new RelayCommand<string>(Launch);
             Brews = new ObservableCollection<Downloadable<Brew>>();
             DownloadCommand = new RelayCommand<Downloadable<Brew>>(async p => await DownloadAsync(p), true);
             GoToCommand = new RelayCommand<Downloadable<Brew>>(GoTo);
             SetDownloadStateFilterCommand = new RelayCommand<string>(SetDownloadStateFilter);
             GoToSettingsCommand = new RelayCommand(GoToSettings);
         }
+
+        public RelayCommand<string> LaunchCommand { get; protected set; }
+        void Launch(string item) => Process.Start(item);
 
         public string Title => $"{BrewDownloadStateFilter.AsDisplay()} Homebrews for {CurrentBrewKind.AsDisplay()} {(CurrentBrewKind == BrewKind.All ? "Platforms" : "Platform")}";
 

@@ -160,18 +160,23 @@
                                         </Button.Content>
                                     </Button>
                                     <Grid Grid.Column="1">
-                                        <Button mah:VisibilityHelper.IsVisible="{Binding IsWaitingToDownload}" Command="{Binding DataContext.DownloadCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}}" CommandParameter="{Binding}">
-                                            <icons:PackIconFontAwesome Kind="DownloadSolid" VerticalAlignment="Center" />
-                                        </Button>
-                                        <Button mah:VisibilityHelper.IsVisible="{Binding IsDownloading}" Command="{Binding CancelDownloadCommand}">
-                                            <icons:PackIconFontAwesome Kind="TimesSolid" VerticalAlignment="Center" />
-                                        </Button>
-                                        <Button mah:VisibilityHelper.IsVisible="{Binding IsDownloaded}" Command="{Binding DataContext.GoToCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}}" CommandParameter="{Binding}">
-                                            <icons:PackIconFontAwesome Kind="ChevronRightSolid" VerticalAlignment="Center" />
-                                        </Button>
-                                        <Button mah:VisibilityHelper.IsVisible="{Binding IsDownloadFailed}" Command="{Binding DataContext.DownloadCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}}" CommandParameter="{Binding}">
-                                            <icons:PackIconFontAwesome Kind="RedoAltSolid" VerticalAlignment="Center" />
-                                        </Button>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Command="{Binding DataContext.LaunchCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}}" CommandParameter="{Binding Value.ReleasePageUri}">
+                                                <icons:PackIconFontAwesome Kind="GlobeSolid" VerticalAlignment="Center" />
+                                            </Button>
+                                            <Button mah:VisibilityHelper.IsVisible="{Binding IsWaitingToDownload}" Command="{Binding DataContext.DownloadCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}}" CommandParameter="{Binding}">
+                                                <icons:PackIconFontAwesome Kind="DownloadSolid" VerticalAlignment="Center" />
+                                            </Button>
+                                            <Button mah:VisibilityHelper.IsVisible="{Binding IsDownloading}" Command="{Binding CancelDownloadCommand}">
+                                                <icons:PackIconFontAwesome Kind="TimesSolid" VerticalAlignment="Center" />
+                                            </Button>
+                                            <Button mah:VisibilityHelper.IsVisible="{Binding IsDownloaded}" Command="{Binding DataContext.GoToCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}}" CommandParameter="{Binding}">
+                                                <icons:PackIconFontAwesome Kind="ChevronRightSolid" VerticalAlignment="Center" />
+                                            </Button>
+                                            <Button mah:VisibilityHelper.IsVisible="{Binding IsDownloadFailed}" Command="{Binding DataContext.DownloadCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}}" CommandParameter="{Binding}">
+                                                <icons:PackIconFontAwesome Kind="RedoAltSolid" VerticalAlignment="Center" />
+                                            </Button>
+                                        </StackPanel>
                                     </Grid>
                                 </Grid>
                                 <Grid Grid.Row="1">
