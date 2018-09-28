@@ -1,7 +1,8 @@
 # SHM
 Sony Homebrew Manager
 
-It is a manager of homebrews for Psvita / PS3 / PS4 that can read tsv files on your computer or via hospetado link on some server, listing the homebrews, doing the control of download.
+It is a homebrew manager for Psvita / PS3 / PS4 that can read tsv files on your computer or via hospetado link on some server, listing the homebrews, doing the download control.
+And for homebrews of psvita has the ability to integrate with site vitadb (http://vitadb.rinnegatamante.it/#/)
 
 # Requirements for use
 
