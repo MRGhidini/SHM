@@ -1,4 +1,4 @@
-﻿using Microsoft.Win32;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -96,9 +96,10 @@ namespace SHM
 
                 Utilitary.CreateFolder(SetConfigRegistry.ReadRegistry(TypeRege.PathDownload.ToString()) + "\\HomeBrewDonwload\\" + "Psvita\\" + HomeBrewSelec.TitleId);
 
-                string Ex = HomeBrewSelec.LastDirectLink;
-                string Extension = Ex.Substring(Ex.Length - 4, 4);
-                string patharc = SetConfigRegistry.ReadRegistry(TypeRege.PathDownload.ToString()) + "\\HomeBrewDonwload\\" + "Psvita\\" + HomeBrewSelec.TitleId + "\\"+HomeBrewSelec.TitleName+ Extension;
+                //Find extension
+                string Ext = FindExten(HomeBrewSelec.LastDirectLink);
+
+                string patharc = SetConfigRegistry.ReadRegistry(TypeRege.PathDownload.ToString()) + "\\HomeBrewDonwload\\" + "Psvita\\" + HomeBrewSelec.TitleId + "\\"+HomeBrewSelec.TitleName+ Ext;
                 DownloadFile(HomeBrewSelec.LastDirectLink,patharc);
                 progressBar1.Visible = true;
                 label6.Visible = true;
@@ -152,9 +153,10 @@ namespace SHM
 
                 Utilitary.CreateFolder(SetConfigRegistry.ReadRegistry(TypeRege.PathDownload.ToString()) + "\\HomeBrewDonwload\\" + "PS3\\" + HomeBrewSelec.TitleId);
 
-                string Ex = HomeBrewSelec.LastDirectLink;
-                string Extension = Ex.Substring(Ex.Length - 4, 4);
-                string patharc = SetConfigRegistry.ReadRegistry(TypeRege.PathDownload.ToString()) + "\\HomeBrewDonwload\\" + "PS3\\" + HomeBrewSelec.TitleId + "\\" + HomeBrewSelec.TitleName + Extension;
+                //Find extension
+                string Ext = FindExten(HomeBrewSelec.LastDirectLink);
+
+                string patharc = SetConfigRegistry.ReadRegistry(TypeRege.PathDownload.ToString()) + "\\HomeBrewDonwload\\" + "PS3\\" + HomeBrewSelec.TitleId + "\\" + HomeBrewSelec.TitleName + Ext;
                 DownloadFile(HomeBrewSelec.LastDirectLink, patharc);
                 progressBar1.Visible = true;
                 label6.Visible = true;
@@ -207,9 +209,10 @@ namespace SHM
 
                 Utilitary.CreateFolder(SetConfigRegistry.ReadRegistry(TypeRege.PathDownload.ToString()) + "\\HomeBrewDonwload\\" + "PS4\\" + HomeBrewSelec.TitleId);
 
-                string Ex = HomeBrewSelec.LastDirectLink;
-                string Extension = Ex.Substring(Ex.Length - 4, 4);
-                string patharc = SetConfigRegistry.ReadRegistry(TypeRege.PathDownload.ToString()) + "\\HomeBrewDonwload\\" + "PS4\\" + HomeBrewSelec.TitleId + "\\" + HomeBrewSelec.TitleName + Extension;
+                //Find extension
+                string Ext = FindExten(HomeBrewSelec.LastDirectLink);
+
+                string patharc = SetConfigRegistry.ReadRegistry(TypeRege.PathDownload.ToString()) + "\\HomeBrewDonwload\\" + "PS4\\" + HomeBrewSelec.TitleId + "\\" + HomeBrewSelec.TitleName + Ext;
                 DownloadFile(HomeBrewSelec.LastDirectLink, patharc);
                 progressBar1.Visible = true;
                 label6.Visible = true;
@@ -220,6 +223,57 @@ namespace SHM
 
                 string NameArtTxt = SetConfigRegistry.ReadRegistry(TypeRege.PathDownload.ToString()) + "\\HomeBrewDonwload\\" + @"\historic.txt";
                 Utilitary.CreateFileWriteHistoric(NameArtTxt, HomeBrewSelec.TitleId);
+            }
+        }
+
+        public string FindExten (string pathweb)
+        {
+            string Ex = pathweb;
+            string Extension = Ex.Substring(Ex.Length - 4, 4);
+
+            if (Extension == ".vpk" || Extension == ".zip" || Extension == ".rar" || Extension == ".exe" || Extension == ".msi" || Extension == ".pkg" || Extension == ".bin")
+            {
+                return Extension;
+            }
+            else
+            {
+                MyWebClient MyWebRespo = new MyWebClient();
+                WebRequest WebRequesSite = WebRequest.Create(pathweb);
+                MyWebRespo.GetWebResponse(WebRequesSite);
+                string ext = MyWebRespo.GetWebResponse(WebRequesSite).ResponseUri.Query;
+                string[] ComplExt = ext.Split('.');
+
+                Extension = ComplExt[1].Substring(0, 3).ToString();
+                Extension = "." + Extension;
+
+                if (Extension == ".vpk" || Extension == ".zip" || Extension == ".rar" || Extension == ".exe" || Extension == ".msi" || Extension == ".pkg" || Extension == ".bin")
+                {
+                    return Extension;
+                }
+                else
+                {
+                    Extension = ".vpk";
+                }
+            }
+
+            return Extension;
+
+        }
+
+        class MyWebClient : WebClient
+        {
+            Uri _responseUri;
+
+            public Uri ResponseUri
+            {
+                get { return _responseUri; }
+            }
+
+            public WebResponse GetWebResponse(WebRequest request)
+            {
+                WebResponse response = base.GetWebResponse(request);
+                _responseUri = response.ResponseUri;
+                return response;
             }
         }
 
@@ -238,13 +292,13 @@ namespace SHM
             //throw new NotImplementedException();
             if (e.Cancelled == true)
             {
-                //FileSystem.DeleteFile(path + "PKG-h-encore\\xGMrXOkORxWRyqzLMihZPqsXAbAXLzvAdJFqtPJLAZTgOcqJobxQAhLNbgiFydVlcmVOrpZKklOYxizQCRpiLfjeROuWivGXfwgkq.pkg");
+                //xGMrXOkORxWRyqzLMihZPqsXAbAXLzvAdJFqtPJLAZTgOcqJobxQAhLNbgiFydVlcmVOrpZKklOYxizQCRpiLfjeROuWivGXfwgkq");
                 MessageBox.Show("Download canceled.", "Download canceled", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
             else if (e.Error != null) // We have an error! Retry a few times, then abort.
             {
-                //FileSystem.DeleteFile(path + "PKG-h-encore\\xGMrXOkORxWRyqzLMihZPqsXAbAXLzvAdJFqtPJLAZTgOcqJobxQAhLNbgiFydVlcmVOrpZKklOYxizQCRpiLfjeROuWivGXfwgkq.pkg");
+                //xGMrXOkORxWRyqzLMihZPqsXAbAXLzvAdJFqtPJLAZTgOcqJobxQAhLNbgiFydVlcmVOrpZKklOYxizQCRpiLfjeROuWivGXfwgkq");
                 MessageBox.Show("An error ocurred while trying to download file: " + e.Error, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
