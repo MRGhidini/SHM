@@ -1,0 +1,40 @@
+﻿<mah:MetroWindow x:Class="SHM.UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:icons="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:local="clr-namespace:SHM.UI"
+        mc:Ignorable="d"
+        DataContext="{Binding Source={StaticResource Locator}, Path=Main}"
+        xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+        Dialog:DialogParticipation.Register="{Binding}"
+        Title="Sony Homebrew Manager" TitleCaps="false" Height="350" Width="525">
+    <mah:MetroWindow.LeftWindowCommands>
+        <mah:WindowCommands>
+            <Button Command="{Binding GoBackCommand}" Visibility="{Binding RelativeSource={RelativeSource Self}, Path=IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <icons:PackIconMaterialLight Kind="ArrowLeft" />
+            </Button>
+        </mah:WindowCommands>
+    </mah:MetroWindow.LeftWindowCommands>
+    <mah:MetroWindow.RightWindowCommands>
+        <mah:WindowCommands>
+            <Button Command="{Binding LaunchCommand}" CommandParameter="https://github.com/MRGhidini">
+                <StackPanel Orientation="Horizontal">
+                    <icons:PackIconFontAwesome Kind="GithubBrands" />
+                    <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="MRGhidini" />
+                </StackPanel>
+            </Button>
+            <Button Command="{Binding LaunchCommand}" CommandParameter="https://github.com/fatihdgn">
+                <StackPanel Orientation="Horizontal">
+                    <icons:PackIconFontAwesome Kind="GithubBrands" />
+                    <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="fatihdgn" />
+                </StackPanel>
+            </Button>
+        </mah:WindowCommands>
+    </mah:MetroWindow.RightWindowCommands>
+    <Grid>
+        <Frame Content="{Binding CurrentPage, UpdateSourceTrigger=PropertyChanged}" NavigationUIVisibility="Hidden" />
+    </Grid>
+</mah:MetroWindow>
