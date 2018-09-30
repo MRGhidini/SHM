@@ -130,7 +130,7 @@
                                         <ColumnDefinition />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
-                                    <Button HorizontalContentAlignment="Stretch">
+                                    <Button HorizontalContentAlignment="Stretch" Command="{Binding DataContext.GoToDetailsCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}}" CommandParameter="{Binding}">
                                         <Button.Content>
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
@@ -138,7 +138,7 @@
                                                     <ColumnDefinition Width="Auto" />
                                                 </Grid.ColumnDefinitions>
                                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,2">
-                                                    <Image Source="{Binding Value.IconUri}" Width="48" Height="48" />
+                                                    <Image mah:VisibilityHelper.IsVisible="{Binding Value.HasIconUri}" Source="{Binding Value.IconUri}" Width="48" Height="48" />
                                                     <StackPanel>
                                                         <StackPanel Orientation="Horizontal">
                                                             <TextBlock Text="{Binding Value.Name}" FontFamily="Segoe UI Light" FontSize="15" Margin="5,0,2,0" VerticalAlignment="Bottom"/>
@@ -161,7 +161,10 @@
                                     </Button>
                                     <Grid Grid.Column="1">
                                         <StackPanel Orientation="Horizontal">
-                                            <Button Command="{Binding DataContext.LaunchCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}}" CommandParameter="{Binding Value.ReleasePageUri}">
+                                            <Button mah:VisibilityHelper.IsVisible="{Binding Value.HasSourceUri}" Command="{Binding DataContext.LaunchCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}}" CommandParameter="{Binding Value.SourceUri}">
+                                                <icons:PackIconFontAwesome Kind="GithubBrands" VerticalAlignment="Center" />
+                                            </Button>
+                                            <Button mah:VisibilityHelper.IsVisible="{Binding Value.HasReleasePageUri}" Command="{Binding DataContext.LaunchCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}}" CommandParameter="{Binding Value.ReleasePageUri}">
                                                 <icons:PackIconFontAwesome Kind="GlobeSolid" VerticalAlignment="Center" />
                                             </Button>
                                             <Button mah:VisibilityHelper.IsVisible="{Binding IsWaitingToDownload}" Command="{Binding DataContext.DownloadCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}}" CommandParameter="{Binding}">

@@ -134,6 +134,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Extensions\SimpleIoCExtensions.cs" />
+    <Compile Include="Pages\Details.xaml.cs">
+      <DependentUpon>Details.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Homebrews.xaml.cs">
       <DependentUpon>Homebrews.xaml</DependentUpon>
     </Compile>
@@ -143,6 +146,7 @@
     <Compile Include="Pages\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\DetailsViewModel.cs" />
     <Compile Include="ViewModel\HomebrewsViewModel.cs" />
     <Compile Include="ViewModel\HomeViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
@@ -161,6 +165,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\Details.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Homebrews.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

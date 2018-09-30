@@ -46,15 +46,17 @@ namespace SHM.UI.ViewModel
             SimpleIoc.Default.Reregister<ViewModelLocator>();
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<HomeViewModel>();
-            SimpleIoc.Default.Register<SettingsViewModel>();
             SimpleIoc.Default.Register<HomebrewsViewModel>();
+            SimpleIoc.Default.Register<DetailsViewModel>();
+            SimpleIoc.Default.Register<SettingsViewModel>();
         }
 
         TModel Get<TModel>() => ServiceLocator.Current.GetInstance<TModel>();
         public MainViewModel Main => Get<MainViewModel>();
         public HomeViewModel Home => Get<HomeViewModel>();
-        public SettingsViewModel Settings => Get<SettingsViewModel>();
         public HomebrewsViewModel Homebrews => Get<HomebrewsViewModel>();
+        public DetailsViewModel Details => Get<DetailsViewModel>();
+        public SettingsViewModel Settings => Get<SettingsViewModel>();
 
         public static void Cleanup()
         {

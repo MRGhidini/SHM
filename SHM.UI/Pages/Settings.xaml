@@ -23,9 +23,7 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Grid.Column="1">
-            <Viewbox HorizontalAlignment="Left">
-                <TextBlock Text="Settings" FontFamily="Segoe UI Light" Foreground="White" />
-            </Viewbox>
+            <TextBlock Text="Settings" FontFamily="Segoe UI Light" Foreground="White" FontSize="25" VerticalAlignment="Center" />
         </Grid>
         <Grid Grid.Row="1" Grid.Column="1">
             <StackPanel>

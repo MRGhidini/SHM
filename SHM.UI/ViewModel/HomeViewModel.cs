@@ -16,13 +16,9 @@ namespace SHM.UI.ViewModel
     {
         public HomeViewModel(ViewModelLocator locator) : base(locator)
         {
-            LaunchCommand = new RelayCommand<string>(Launch);
             GoToDetailCommand = new RelayCommand<string>(async p => await GoToDetailAsync(p), true);
             GoToSettingsCommand = new RelayCommand(GoToSettings);
         }
-
-        public RelayCommand<string> LaunchCommand { get; protected set; }
-        void Launch(string item) => Process.Start(item);
 
         public RelayCommand<string> GoToDetailCommand { get; set; }
         public async Task GoToDetailAsync(string parameter)

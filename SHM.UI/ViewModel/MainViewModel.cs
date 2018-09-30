@@ -32,19 +32,16 @@ namespace SHM.UI.ViewModel
         public MainViewModel(ViewModelLocator locator) : base(locator)
         {
             Dialog = DialogCoordinator.Instance;
-            LaunchCommand = new RelayCommand<string>(Launch);
 
             SimpleIoc.Default.Reregister<Home>();
-            SimpleIoc.Default.Reregister<Settings>();
             SimpleIoc.Default.Reregister<Homebrews>();
+            SimpleIoc.Default.Reregister<Details>();
+            SimpleIoc.Default.Reregister<Settings>();
 
             GoBackCommand = new RelayCommand(GoBack, CanGoBack);
             GoToCommand = new RelayCommand<string>(GoTo);
             GoTo<Home>();
         }
-
-        public RelayCommand<string> LaunchCommand { get; protected set; }
-        void Launch(string item) => Process.Start(item);
 
         Page currentPage;
         public Page CurrentPage { get { return currentPage; } set { Set(ref currentPage, value); } }
@@ -62,8 +59,9 @@ namespace SHM.UI.ViewModel
             switch (page)
             {
                 case nameof(Home): GoTo<Home>(); break;
-                case nameof(Settings): GoTo<Settings>(); break;
                 case nameof(Homebrews): GoTo<Homebrews>(); break;
+                case nameof(Details): GoTo<Details>(); break;
+                case nameof(Settings): GoTo<Settings>(); break;
                 default:
                     break;
             }

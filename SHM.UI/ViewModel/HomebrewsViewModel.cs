@@ -20,16 +20,13 @@ namespace SHM.UI.ViewModel
     {
         public HomebrewsViewModel(ViewModelLocator locator) : base(locator)
         {
-            LaunchCommand = new RelayCommand<string>(Launch);
             Brews = new ObservableCollection<Downloadable<Brew>>();
             DownloadCommand = new RelayCommand<Downloadable<Brew>>(async p => await DownloadAsync(p), true);
             GoToCommand = new RelayCommand<Downloadable<Brew>>(GoTo);
             SetDownloadStateFilterCommand = new RelayCommand<string>(SetDownloadStateFilter);
             GoToSettingsCommand = new RelayCommand(GoToSettings);
+            GoToDetailsCommand = new RelayCommand<Downloadable<Brew>>(GoToDetails);
         }
-
-        public RelayCommand<string> LaunchCommand { get; protected set; }
-        void Launch(string item) => Process.Start(item);
 
         public string Title => $"{BrewDownloadStateFilter.AsDisplay()} Homebrews for {CurrentBrewKind.AsDisplay()} {(CurrentBrewKind == BrewKind.All ? "Platforms" : "Platform")}";
 
@@ -66,12 +63,6 @@ namespace SHM.UI.ViewModel
             RaisePropertyChanged(nameof(FilteredBrews));
             RaisePropertyChanged(nameof(HasBrews));
             IsLoading = false;
-            //if(!Brews.Any())
-            //{
-            //    await Locator.Main.Dialog.ShowMessageAsync(Locator.Main, "Information", $"There is not homebrew to show. Make sure you configured the source path correctly.", MahApps.Metro.Controls.Dialogs.MessageDialogStyle.Affirmative);
-            //    Locator.Main.GoTo<Settings>();
-            //    return;
-            //}
         }
 
         public RelayCommand<Downloadable<Brew>> DownloadCommand { get; protected set; }
@@ -91,6 +82,16 @@ namespace SHM.UI.ViewModel
 
         public RelayCommand GoToSettingsCommand { get; set; }
         public void GoToSettings() => Locator.Main.GoTo<Settings>();
+
+        public RelayCommand<Downloadable<Brew>> GoToDetailsCommand { get; protected set; }
+        public void GoToDetails(Downloadable<Brew> parameter)
+        {
+            if (parameter.Value.HasDetails)
+            {
+                Locator.Details.Brew = parameter;
+                Locator.Main.GoTo<Details>();
+            }
+        }
     }
 
 }
