@@ -1,0 +1,195 @@
+﻿<Page x:Class="SHM.UI.Pages.Homebrews"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SHM.UI.Pages"
+      mc:Ignorable="d" 
+      xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+      xmlns:icons="http://metro.mahapps.com/winfx/xaml/iconpacks"
+      d:DesignHeight="350" d:DesignWidth="525"
+      DataContext="{Binding Source={StaticResource Locator}, Path=Homebrews}"
+      Title="Homebrews">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="8*" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="5*" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Grid.Column="1">
+            <TextBlock Text="{Binding Title}" FontFamily="Segoe UI Light" Foreground="White" FontSize="20" VerticalAlignment="Center" />
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="1" mah:VisibilityHelper.IsVisible="{Binding IsLoading}">
+            <StackPanel VerticalAlignment="Center">
+                <mah:ProgressRing Foreground="{DynamicResource AccentColorBrush}"/>
+                <TextBlock Text="Loading homebrews" HorizontalAlignment="Center" FontFamily="Segoe UI Light" Foreground="White" FontSize="22" />
+            </StackPanel>
+        </Grid>
+        <!--<Grid Grid.Row="1" Grid.Column="1" mah:VisibilityHelper.IsVisible="{Binding HasBrews}">-->
+        <Grid Grid.Row="1" Grid.Column="1" mah:VisibilityHelper.IsCollapsed="{Binding IsNoBrewErrorHidden}">
+            <StackPanel VerticalAlignment="Center">
+                <icons:PackIconFontAwesome Kind="ExclamationCircleSolid" HorizontalAlignment="Center" Width="64" Height="64" Margin="5" Foreground="White" />
+                <TextBlock Text="Oh no!" HorizontalAlignment="Center" FontFamily="Segoe UI Light" Foreground="White" FontSize="22" />
+                <TextBlock Text="There is no homebrew to show." HorizontalAlignment="Center" FontFamily="Segoe UI Light" Foreground="White" FontSize="16" />
+                <TextBlock Text="Make sure you have the right path configuration." HorizontalAlignment="Center" FontFamily="Segoe UI Light" Foreground="White" FontSize="14" />
+                <Button VerticalAlignment="Center" HorizontalAlignment="Center" Command="{Binding GoToSettingsCommand}" Margin="5">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <icons:PackIconFontAwesome Kind="CogsSolid" VerticalAlignment="Center" Margin="0,0,5,0" />
+                            <TextBlock Text="Go to Settings" FontFamily="Segoe UI Light"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="1" mah:VisibilityHelper.IsVisible="{Binding HasBrews}">
+            <!--<ListView ItemsSource="{Binding Brews}">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel MaxWidth="{Binding (FrameworkElement.ActualWidth), 
+            RelativeSource={RelativeSource AncestorType=ScrollContentPresenter}}"
+            ItemWidth="{Binding (ListView.View).ItemWidth, 
+            RelativeSource={RelativeSource AncestorType=ListView}}"
+            MinWidth="{Binding ItemWidth, RelativeSource={RelativeSource Self}}"
+            ItemHeight="{Binding (ListView.View).ItemHeight, 
+            RelativeSource={RelativeSource AncestorType=ListView}}" />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Button>
+                                <Button.Content>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="{Binding IconUri}" Width="32" Height="32" />
+                                        <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe UI Light" FontSize="16" Margin="5,0"/>
+                                    </StackPanel>
+                                </Button.Content>
+                            </Button>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>-->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Button Margin="2" Command="{Binding SetDownloadStateFilterCommand}" CommandParameter="None">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <icons:PackIconFontAwesome Kind="PlaystationBrands" VerticalAlignment="Center" Margin="0,0,5,0" />
+                            <TextBlock Text="All" FontFamily="Segoe UI Light"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                <Button Margin="2" Command="{Binding SetDownloadStateFilterCommand}" CommandParameter="WaitingToDownload">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <icons:PackIconFontAwesome Kind="PlusSolid" VerticalAlignment="Center" Margin="0,0,5,0" />
+                            <TextBlock Text="Available" FontFamily="Segoe UI Light"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                <Button Margin="2" Command="{Binding SetDownloadStateFilterCommand}" CommandParameter="Downloading">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <icons:PackIconFontAwesome Kind="DownloadSolid" VerticalAlignment="Center" Margin="0,0,5,0" />
+                            <TextBlock Text="Downloading" FontFamily="Segoe UI Light"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                <Button Margin="2" Command="{Binding SetDownloadStateFilterCommand}" CommandParameter="Downloaded">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <icons:PackIconFontAwesome Kind="CheckSolid" VerticalAlignment="Center" Margin="0,0,5,0" />
+                            <TextBlock Text="Downloaded" FontFamily="Segoe UI Light"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+            </StackPanel>
+            <TextBox Grid.Row="1" mah:TextBoxHelper.Watermark="Search for the name or the author of the homebrew" mah:TextBoxHelper.ClearTextButton="True" Text="{Binding BrewFilter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+                <ItemsControl ItemsSource="{Binding FilteredBrews}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="0,2">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Button HorizontalContentAlignment="Stretch" Command="{Binding DataContext.GoToDetailsCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}}" CommandParameter="{Binding}">
+                                        <Button.Content>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition Width="Auto" />
+                                                </Grid.ColumnDefinitions>
+                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,2">
+                                                    <Image mah:VisibilityHelper.IsVisible="{Binding Value.HasIconUri}" Source="{Binding Value.IconUri}" Width="48" Height="48" />
+                                                    <StackPanel>
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <TextBlock Text="{Binding Value.Name}" FontFamily="Segoe UI Light" FontSize="15" Margin="5,0,2,0" VerticalAlignment="Bottom"/>
+                                                            <TextBlock Text="{Binding Value.Version}" FontFamily="Segoe UI Light" FontSize="10" VerticalAlignment="Bottom"/>
+                                                        </StackPanel>
+                                                        <TextBlock Text="{Binding Value.Author}" FontFamily="Segoe UI Light" FontSize="12" Margin="5,0"/>
+                                                        <TextBlock Text="{Binding Value.Kind}" FontFamily="Segoe UI Light" FontSize="10" Margin="5,0"/>
+                                                    </StackPanel>
+                                                </StackPanel>
+                                                <StackPanel Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Vertical" mah:VisibilityHelper.IsVisible="{Binding IsDownloading}">
+                                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                                        <TextBlock Text="%" FontFamily="Segoe UI Light" FontSize="15" />
+                                                        <TextBlock Text="{Binding Percentage}" FontFamily="Segoe UI Light" FontSize="15" />
+                                                    </StackPanel>
+                                                    <TextBlock Text="{Binding DownloadingStatus}" FontFamily="Segoe UI Light" FontSize="12" VerticalAlignment="Bottom" />
+                                                </StackPanel>
+
+                                            </Grid>
+                                        </Button.Content>
+                                    </Button>
+                                    <Grid Grid.Column="1">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button mah:VisibilityHelper.IsVisible="{Binding Value.HasSourceUri}" Command="{Binding DataContext.LaunchCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}}" CommandParameter="{Binding Value.SourceUri}">
+                                                <icons:PackIconFontAwesome Kind="GithubBrands" VerticalAlignment="Center" />
+                                            </Button>
+                                            <Button mah:VisibilityHelper.IsVisible="{Binding Value.HasReleasePageUri}" Command="{Binding DataContext.LaunchCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}}" CommandParameter="{Binding Value.ReleasePageUri}">
+                                                <icons:PackIconFontAwesome Kind="GlobeSolid" VerticalAlignment="Center" />
+                                            </Button>
+                                            <Button mah:VisibilityHelper.IsVisible="{Binding IsWaitingToDownload}" Command="{Binding DataContext.DownloadCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}}" CommandParameter="{Binding}">
+                                                <icons:PackIconFontAwesome Kind="DownloadSolid" VerticalAlignment="Center" />
+                                            </Button>
+                                            <Button mah:VisibilityHelper.IsVisible="{Binding IsDownloading}" Command="{Binding CancelDownloadCommand}">
+                                                <icons:PackIconFontAwesome Kind="TimesSolid" VerticalAlignment="Center" />
+                                            </Button>
+                                            <Button mah:VisibilityHelper.IsVisible="{Binding IsDownloaded}" Command="{Binding DataContext.GoToCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}}" CommandParameter="{Binding}">
+                                                <icons:PackIconFontAwesome Kind="ChevronRightSolid" VerticalAlignment="Center" />
+                                            </Button>
+                                            <Button mah:VisibilityHelper.IsVisible="{Binding IsDownloadFailed}" Command="{Binding DataContext.DownloadCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}}" CommandParameter="{Binding}">
+                                                <icons:PackIconFontAwesome Kind="RedoAltSolid" VerticalAlignment="Center" />
+                                            </Button>
+                                        </StackPanel>
+                                    </Grid>
+                                </Grid>
+                                <Grid Grid.Row="1">
+                                    <mah:MetroProgressBar mah:VisibilityHelper.IsVisible="{Binding IsDownloading}" Maximum="100" HorizontalAlignment="Stretch" Value="{Binding Percentage}"/>
+                                </Grid> 
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</Page>
