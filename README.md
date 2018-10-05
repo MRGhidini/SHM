@@ -28,7 +28,7 @@ Taget Framework:
 
 Example of physical file
 
-![Screenshot](pathfisi.PNG)
+![Screenshot](img/pathfisi.PNG)
 
 Example of files through website
 
