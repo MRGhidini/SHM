@@ -16,52 +16,58 @@ Taget Framework:
 
 1 - Download the latest version here [Download last version](https://github.com/MRGhidini/SHM/releases/latest)
 
-2 - Run SHM.exe and select any option, note that SHM will send a warning and will close  happens only the first time it runs on your pc, this process is necessary for SHM to create the configuration settings.
-
-![Screenshot](img/config.PNG)
-
-3 - Run SHM.exe and select Menu > Setting
+2 - Run SHM.UI.exe and select > Setting
 
 ![Screenshot](img/setting.png)
 
-4 - Now configure the paths below, remembering that where you request tsv files you can point to website link instead of pointing to the physical file (To help with this task, I left 3 sample files in the tsv folder use as an example).
+
+![Screenshot](img/setting2.png)
+
+
+3 - Now configure the paths below, remembering that where you request tsv files you can point to website link instead of pointing to the physical file (To help with this task, I left 3 sample files in the tsv folder use as an example).
 
 Example of physical file
 
-![Screenshot](img/path.PNG)
+![Screenshot](pathfisi.PNG)
 
 Example of files through website
 
-![Screenshot](img/pathlink.PNG)
+![Screenshot](img/pathfisi2.PNG)
 
-For version 1.1 and higher you can integrate with the option vitadb (rinnegatamante) for Psvita, to use just check the option below. (Communication with vitadb is rest json)
+And for option of Psvita you can integrate with the option vitadb (rinnegatamante) for Psvita, to use just check the option below. (Communication with vitadb is json rest)
 
-![Screenshot](img/vitadb.png)
+![Screenshot](img/vitadb2.png)
 
 
 # How to use
 
-1 - Choose one of the options below for Psvita / PS3 / PS4
+1 - Choose one of the options below for Psvita / PS3 / PS4 or All Platforms
 
-![Screenshot](img/user1.PNG)
+![Screenshot](img/selectplataform.PNG)
 
 2 - It will display a list with all the homebrews, and based on the selection it is possible to access other information and even videos.
 
-![Screenshot](img/listview.PNG)
+![Screenshot](img/selectplataform2.PNG)
 
-3 - After selecting your homebrew, press Download that SHM will start the downlaod of your homebrew
+3 - After selecting your homebrew, press Download that SHM will start download your homebrew and you can do multiple download at the same time
 
-![Screenshot](img/download.png)
+![Screenshot](img/download2.png)
 
-4 - After download realize that by clicking on the list of homebrews again, SHM marked the homebrew that you downloaded highlighting with a color, and so it will control and save your history of download in file historic.txt
+4 - After the download press the "Downloaded" button and it will display a list of all downloaded homebrews.
 
-![Screenshot](img/afterdonwload.png)
+![Screenshot](img/downloadDone.png)
+
+5 - Recommendations for use in "Settings"
+* For Psvita option, activate the option Vita db, go get every list of homebrews of the site rinnegatamante
+* For PS3 option use the link "http://freegroup.com.br/psvita/PS3_HOMEBREW.tsv" because it will always be updated
+* For PS4 option use the link "http://freegroup.com.br/psvita/PS4_HOMEBREW.tsv" because it will always be updated
 
 # Compile the source
 
-Copy the entire SHM folder to your pc and use Visual Studio 2017
+Copy all SHM folders to your PC and use visual studio 2017
 
 ## Special thanks  
+- Faith Doğan For all the learning you've given me and all the time spent helping me and improving the project. Many thanks ^^ 
 - Nukasnel for test
 - Berg for test
 - GamersRebirthDL thanks for all your publications and your collaboration for test
