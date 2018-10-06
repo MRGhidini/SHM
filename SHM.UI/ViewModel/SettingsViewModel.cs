@@ -5,6 +5,8 @@ using SHM.UI.Pages;
 using SHM.Utilities;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,21 +32,28 @@ namespace SHM.UI.ViewModel
             SelectCommand = new RelayCommand<string>(async p => await SelectAsync(p), true);
         }
 
-        string psv, ps3, ps4, downloadPath;
         bool useVitaDB;
+        string psv, ps3, ps4, downloadPath, theme;
+        public bool UseVitaDB { get { return useVitaDB; } set { Set(ref useVitaDB, value); } }
         public string PSV { get { return psv; } set { Set(ref psv, value); } }
         public string PS3 { get { return ps3; } set { Set(ref ps3, value); } }
         public string PS4 { get { return ps4; } set { Set(ref ps4, value); } }
         public string DownloadPath { get { return downloadPath; } set { Set(ref downloadPath, value); } }
-        public bool UseVitaDB { get { return useVitaDB; } set { Set(ref useVitaDB, value); } }
+        public string Theme { get { return theme; } set { Set(ref theme, value); App.ChangeTheme(theme); } }
+
+        public ObservableCollection<string> Themes { get; set; } = new ObservableCollection<string>();
+
 
         void Populate()
         {
+            UseVitaDB = Registry.UseVitaDB;
             PSV = Registry.PSV;
             PS3 = Registry.PS3;
             PS4 = Registry.PS4;
             DownloadPath = Registry.DownloadPath;
-            UseVitaDB = Registry.UseVitaDB;
+            Theme = Registry.Theme;
+            Themes.Clear();
+            foreach (var theme in App.SupportedThemes()) Themes.Add(theme);
         }
 
         public RelayCommand<string> SelectCommand { get; protected set; }
@@ -84,11 +93,12 @@ namespace SHM.UI.ViewModel
             if (await Locator.Main.Dialog.ShowMessageAsync(Locator.Main, "Confirmation", "Do you want to save your changes?", MahApps.Metro.Controls.Dialogs.MessageDialogStyle.AffirmativeAndNegative)
                 == MahApps.Metro.Controls.Dialogs.MessageDialogResult.Affirmative)
             {
+                Registry.UseVitaDB = UseVitaDB;
                 Registry.PSV = UseVitaDB ? string.Empty : PSV;
                 Registry.PS3 = PS3;
                 Registry.PS4 = PS4;
                 Registry.DownloadPath = DownloadPath;
-                Registry.UseVitaDB = UseVitaDB;
+                Registry.Theme = Theme;
                 Locator.Main.GoTo<Home>();
                 await Locator.Main.Dialog.ShowMessageAsync(Locator.Main, "Information", "Saved changes successfully.");
             }
@@ -101,6 +111,7 @@ namespace SHM.UI.ViewModel
                 == MahApps.Metro.Controls.Dialogs.MessageDialogResult.Affirmative)
             {
                 Populate();
+                App.ChangeTheme();
                 Locator.Main.GoTo<Home>();
             }
         }

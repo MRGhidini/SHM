@@ -17,6 +17,7 @@ namespace SHM.Utilities
         public const string LegacyPS4Key = "PathPS4";
         public const string LegacyDownloadPathKey = "PathDownload";
         public const string LegacyUseVitaDBKey = "OptionVitaDB";
+        public const string DefaultTheme = "SHM";
         public SHMRegistryHelper() : base(RegistryRoot.User, "SHM") { }
 
         string ProvideString(string[] keys, Func<string> valueProvider = null) => Provide(keys, () => valueProvider?.Invoke() ?? string.Empty)?.ToString();
@@ -26,6 +27,7 @@ namespace SHM.Utilities
         public string PS3 { get { return ProvideString(new[] { nameof(PS3), LegacyPS3Key }); } set { Set(nameof(PS3), value); } }
         public string PS4 { get { return ProvideString(new[] { nameof(PS4), LegacyPS4Key }); } set { Set(nameof(PS4), value); } }
         public string DownloadPath { get { return ProvideString(new[] { nameof(DownloadPath), LegacyDownloadPathKey }, () => new KnownFolder(KnownFolderType.Downloads).Path); } set { Set(nameof(DownloadPath), value); } }
+        public string Theme { get { return ProvideString(new[] { nameof(Theme) }, () => DefaultTheme); } set { Set(nameof(Theme), value); } }
         public bool UseVitaDB { get { return ProvideBool(new[] { nameof(UseVitaDB), LegacyUseVitaDBKey }, () => true); } set { Set(nameof(UseVitaDB), value); } }
     }
 }

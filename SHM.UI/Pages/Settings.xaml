@@ -28,7 +28,13 @@
         <Grid Grid.Row="1" Grid.Column="1">
             <StackPanel>
                 <Grid Margin="5">
-                    <mah:ToggleSwitch Header="Use Vita DB" Grid.Column="1" HorizontalAlignment="Center" OnLabel="Yes" OffLabel="No" VerticalAlignment="Center" IsChecked="{Binding UseVitaDB}"></mah:ToggleSwitch>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="Use Vita DB : " FontFamily="Segoe UI Light" Foreground="White" VerticalAlignment="Center" />
+                    <mah:ToggleSwitch Grid.Column="1" HorizontalAlignment="Right" OnLabel="Yes" OffLabel="No" VerticalAlignment="Center" IsChecked="{Binding UseVitaDB}"></mah:ToggleSwitch>
                 </Grid>
                 <Grid Margin="5" mah:VisibilityHelper.IsCollapsed="{Binding UseVitaDB}">
                     <Grid.ColumnDefinitions>
@@ -70,6 +76,16 @@
                     <TextBlock Grid.Column="0" Text="Download Path : " FontFamily="Segoe UI Light" Foreground="White" VerticalAlignment="Center" />
                     <TextBox Grid.Column="1" HorizontalAlignment="Stretch" Text="{Binding DownloadPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     <Button Grid.Column="2" Content="..." Margin="5,0,0,0" Command="{Binding SelectCommand}" CommandParameter="DownloadPath"/>
+                </Grid>
+                <Grid Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="3.4*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="Theme : " FontFamily="Segoe UI Light" Foreground="White" VerticalAlignment="Center" />
+                    <ComboBox Grid.Column="1" ItemsSource="{Binding Themes}" SelectedItem="{Binding Theme, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></ComboBox>
+                    <!--<TextBox Grid.Column="1" HorizontalAlignment="Stretch" Text="{Binding DownloadPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />-->
                 </Grid>
             </StackPanel>
         </Grid>

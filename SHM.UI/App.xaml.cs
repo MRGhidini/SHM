@@ -16,22 +16,39 @@ namespace SHM.UI
     /// </summary>
     public partial class App : Application
     {
-        public const string DefaultThemeName = "SHM";
         public static string AssemblyName => Assembly.GetExecutingAssembly().GetName().Name;
+        public static string ThemesPath => $"pack://application:,,,/{AssemblyName};component/Themes";
 
         protected override void OnStartup(StartupEventArgs e)
         {
             BrewMapper.Configure();
-            ThemeManager.AddAccent(DefaultThemeName, new Uri($"pack://application:,,,/{AssemblyName};component/Themes/{DefaultThemeName}.xaml"));
-
-            // get the current app style (theme and accent) from the application
-            Tuple<AppTheme, Accent> theme = ThemeManager.DetectAppStyle(Current);
-
-            // now change app style to the custom accent and current theme
-            ThemeManager.ChangeAppStyle(Current,
-                                        ThemeManager.GetAccent(DefaultThemeName),
-                                        theme.Item1);
+            ChangeTheme();
+            SHMRegistryHelper.Instance.PropertyChanged += (_, pcea) => { if (pcea.PropertyName == "Theme") ChangeTheme(); };
             base.OnStartup(e);
+        }
+
+        public static IEnumerable<string> SupportedThemes()
+        {
+            yield return "SHM";
+            yield return "Gray";
+            yield return "Yellow";
+            yield return "Aqua";
+            yield return "Blue";
+            yield return "Orange";
+        }
+
+        public static void ChangeTheme(string themeName = null)
+        {
+            themeName = themeName ?? SHMRegistryHelper.Instance.Theme;
+            var accent = ThemeManager.GetAccent(themeName);
+            if (accent == null && ThemeManager.AddAccent(themeName, new Uri($"{ThemesPath}/{themeName}.xaml")))
+                accent = ThemeManager.GetAccent(themeName);
+
+            if (accent == null) return;
+
+            Tuple<AppTheme, Accent> theme = ThemeManager.DetectAppStyle(Current);
+            ThemeManager.ChangeAppStyle(Current, accent, theme.Item1);
+
         }
     }
 }

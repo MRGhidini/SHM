@@ -1,14 +1,16 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SHM.Utilities
 {
-    public class RegistryHelper
+    public class RegistryHelper : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
         public RegistryHelper(RegistryRoot root, string path)
         {
             Root = root;
@@ -18,7 +20,7 @@ namespace SHM.Utilities
         public string Path { get; set; }
 
         public const string SoftwareKey = "Software";
-
+        
         RegistryKey RootRegistryKey() => Root == RegistryRoot.User ? Registry.CurrentUser.OpenSubKey(SoftwareKey, writable: true) : Registry.LocalMachine.OpenSubKey(SoftwareKey.ToUpper(), writable: true);
         RegistryKey PathRegistryKey(string path = null) => Try.It(() => RootRegistryKey().CreateSubKey(path ?? Path));
         public object Get(params string[] names)
@@ -34,6 +36,7 @@ namespace SHM.Utilities
         public object Set(string name, object value)
         {
             PathRegistryKey()?.SetValue(name, value);
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
             return value;
         }
 

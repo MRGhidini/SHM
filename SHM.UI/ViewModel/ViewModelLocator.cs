@@ -17,6 +17,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using MahApps.Metro.Controls.Dialogs;
 using SHM.UI.Extensions;
+using SHM.Utilities;
 
 namespace SHM.UI.ViewModel
 {
