@@ -8,6 +8,7 @@
         xmlns:local="clr-namespace:SHM.UI"
         mc:Ignorable="d"
         DataContext="{Binding Source={StaticResource Locator}, Path=Main}"
+        GlowBrush="{DynamicResource HighlightBrush}"
         xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
         Dialog:DialogParticipation.Register="{Binding}"
         Title="Sony Homebrew Manager" TitleCaps="false" Height="350" Width="525">
