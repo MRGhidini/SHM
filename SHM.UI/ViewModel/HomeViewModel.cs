@@ -18,6 +18,8 @@ namespace SHM.UI.ViewModel
         {
             GoToDetailCommand = new RelayCommand<string>(async p => await GoToDetailAsync(p), true);
             GoToSettingsCommand = new RelayCommand(GoToSettings);
+            CheckForUpdatesCommmand = new RelayCommand(async () => await CheckForUpdatesAsync(), true);
+            CheckForUpdatesCommmand.Execute(null);
         }
 
         public RelayCommand<string> GoToDetailCommand { get; set; }
@@ -35,5 +37,19 @@ namespace SHM.UI.ViewModel
 
         public RelayCommand GoToSettingsCommand { get; set; }
         public void GoToSettings() => Locator.Main.GoTo<Settings>();
+
+        public RelayCommand CheckForUpdatesCommmand { get; set; }
+        public async Task CheckForUpdatesAsync()
+        {
+            await Locator.Update.Bootstrap();
+            if (Locator.Update.IsUpdateAvailable)
+            {
+                if ((await Locator.Main.Dialog.ShowMessageAsync(Locator.Main, "Information", $"New update is available. Would you like to update to version {Locator.Update.LatestRelease.Version.ToString()}?", MahApps.Metro.Controls.Dialogs.MessageDialogStyle.AffirmativeAndNegative)) == MahApps.Metro.Controls.Dialogs.MessageDialogResult.Affirmative)
+                {
+                    Locator.Main.GoTo<Update>();
+                    await Locator.Update.UpdateAppAsync();
+                }
+            }
+        }
     }
 }

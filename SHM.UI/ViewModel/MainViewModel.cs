@@ -37,6 +37,7 @@ namespace SHM.UI.ViewModel
             SimpleIoc.Default.Reregister<Homebrews>();
             SimpleIoc.Default.Reregister<Details>();
             SimpleIoc.Default.Reregister<Settings>();
+            SimpleIoc.Default.Reregister<Update>();
 
             GoBackCommand = new RelayCommand(GoBack, CanGoBack);
             GoToCommand = new RelayCommand<string>(GoTo);
@@ -62,6 +63,7 @@ namespace SHM.UI.ViewModel
                 case nameof(Homebrews): GoTo<Homebrews>(); break;
                 case nameof(Details): GoTo<Details>(); break;
                 case nameof(Settings): GoTo<Settings>(); break;
+                case nameof(Update): GoTo<Update>(); break;
                 default:
                     break;
             }

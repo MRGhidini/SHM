@@ -31,7 +31,6 @@
                 <TextBlock Text="Loading homebrews" HorizontalAlignment="Center" FontFamily="Segoe UI Light" Foreground="White" FontSize="22" />
             </StackPanel>
         </Grid>
-        <!--<Grid Grid.Row="1" Grid.Column="1" mah:VisibilityHelper.IsVisible="{Binding HasBrews}">-->
         <Grid Grid.Row="1" Grid.Column="1" mah:VisibilityHelper.IsCollapsed="{Binding IsNoBrewErrorHidden}">
             <StackPanel VerticalAlignment="Center">
                 <icons:PackIconFontAwesome Kind="ExclamationCircleSolid" HorizontalAlignment="Center" Width="64" Height="64" Margin="5" Foreground="White" />

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>SHM.UI</id>
+    <!-- version will be replaced by MSBuild -->
+    <version>0.0.0.0</version>
+    <authors>MRGhidini, fatihdgn</authors>
+    <description>SHM is a homebrew manager for the PS Vita, PS3 and PS4 consoles.</description>
+    <dependencies />
+  </metadata>
+  <files>
+    <file src="**\*.*" target="lib\net45\" exclude="*.pdb;*.nupkg;*.vshost.*"/>
+  </files>
+</package>

@@ -50,6 +50,7 @@ namespace SHM.UI.ViewModel
             SimpleIoc.Default.Register<HomebrewsViewModel>();
             SimpleIoc.Default.Register<DetailsViewModel>();
             SimpleIoc.Default.Register<SettingsViewModel>();
+            SimpleIoc.Default.Register<UpdateViewModel>();
         }
 
         TModel Get<TModel>() => ServiceLocator.Current.GetInstance<TModel>();
@@ -58,6 +59,7 @@ namespace SHM.UI.ViewModel
         public HomebrewsViewModel Homebrews => Get<HomebrewsViewModel>();
         public DetailsViewModel Details => Get<DetailsViewModel>();
         public SettingsViewModel Settings => Get<SettingsViewModel>();
+        public UpdateViewModel Update => Get<UpdateViewModel>();
 
         public static void Cleanup()
         {
