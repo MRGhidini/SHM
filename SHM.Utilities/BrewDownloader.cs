@@ -65,9 +65,12 @@ namespace SHM.Utilities
                 {
                     downloadable.State = DownloadState.Downloaded;
                     var contentDisposition = client.ResponseHeaders["content-disposition"];
-                    string realFileName = ClearInvalidFileNameChars(contentDisposition?.Split(';')?.Last()?.Split('=')?.Last() ?? Path.GetFileName(new Uri(downloadable.Value.DownloadUri).LocalPath), string.Empty);
-                    string realFilePath = Path.Combine(brewPath, realFileName);
-                    File.Move(filePath, realFilePath);
+                    if (contentDisposition != null)
+                    {
+                        string realFileName = ClearInvalidFileNameChars(contentDisposition?.Split(';')?.Last()?.Split('=')?.Last() ?? Path.GetFileName(new Uri(downloadable.Value.DownloadUri).LocalPath), string.Empty);
+                        string realFilePath = Path.Combine(brewPath, realFileName);
+                        File.Move(filePath, realFilePath);
+                    }
                 }
                 downloadable.Clear();
             };
