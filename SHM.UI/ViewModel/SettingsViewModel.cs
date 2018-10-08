@@ -16,15 +16,9 @@ namespace SHM.UI.ViewModel
     public class SettingsViewModel : ViewModel
     {
         public const string SelectDialogTitleFormat = "Select a {0} for {1}";
-        public CommonOpenFileDialog SelectDialog { get; set; }
         public SHMRegistryHelper Registry { get; set; }
         public SettingsViewModel(ViewModelLocator locator) : base(locator)
         {
-            SelectDialog = new CommonOpenFileDialog() {
-                EnsureFileExists = true,
-                EnsurePathExists = true
-            };
-            SelectDialog.Filters.Add(new CommonFileDialogFilter("TSV Files", "*.tsv"));
             Registry = SHMRegistryHelper.Instance;
             Populate();
             SaveCommand = new RelayCommand(async () => await SaveAsync(), true);
@@ -52,37 +46,39 @@ namespace SHM.UI.ViewModel
             PS4 = Registry.PS4;
             DownloadPath = Registry.DownloadPath;
             Theme = Registry.Theme;
-            Themes.Clear();
-            foreach (var theme in App.SupportedThemes()) Themes.Add(theme);
+            if (!Themes.Any())
+                foreach (var theme in App.SupportedThemes()) Themes.Add(theme);
         }
 
         public RelayCommand<string> SelectCommand { get; protected set; }
         async Task SelectAsync(string parameter)
         {
             await Task.Yield();
+            var select = new CommonOpenFileDialog();
             switch (parameter)
             {
                 case nameof(PSV):
                 case nameof(PS3):
                 case nameof(PS4):
-                    SelectDialog.IsFolderPicker = false;
-                    SelectDialog.Title = string.Format(SelectDialogTitleFormat, "file", parameter);
+                    select.Filters.Add(new CommonFileDialogFilter("TSV Files", "*.tsv"));
+                    select.IsFolderPicker = false;
+                    select.Title = string.Format(SelectDialogTitleFormat, "file", parameter);
                     break;
                 case nameof(DownloadPath):
-                    SelectDialog.IsFolderPicker = true;
-                    SelectDialog.Title = string.Format(SelectDialogTitleFormat, "folder", "download path");
+                    select.IsFolderPicker = true;
+                    select.Title = string.Format(SelectDialogTitleFormat, "folder", "download path");
                     break;
                 default: return;
             }
 
-            if(SelectDialog.ShowDialog() == CommonFileDialogResult.Ok)
+            if (select.ShowDialog() == CommonFileDialogResult.Ok)
             {
                 switch (parameter)
                 {
-                    case nameof(PSV): PSV = SelectDialog.FileName; break;
-                    case nameof(PS3): PS3 = SelectDialog.FileName; break;
-                    case nameof(PS4): PS4 = SelectDialog.FileName; break;
-                    case nameof(DownloadPath): DownloadPath = SelectDialog.FileName; break;
+                    case nameof(PSV): PSV = select.FileName; break;
+                    case nameof(PS3): PS3 = select.FileName; break;
+                    case nameof(PS4): PS4 = select.FileName; break;
+                    case nameof(DownloadPath): DownloadPath = select.FileName; break;
                 }
             }
         }
