@@ -148,10 +148,7 @@
                                                     </StackPanel>
                                                 </StackPanel>
                                                 <StackPanel Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Vertical" mah:VisibilityHelper.IsVisible="{Binding IsDownloading}">
-                                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                                        <TextBlock Text="%" FontFamily="Segoe UI Light" FontSize="15" />
-                                                        <TextBlock Text="{Binding Percentage}" FontFamily="Segoe UI Light" FontSize="15" />
-                                                    </StackPanel>
+                                                    <TextBlock Text="{Binding Percentage, StringFormat={}{0}%}" mah:VisibilityHelper.IsHidden="{Binding IsTotalSizeUnknown}" FontFamily="Segoe UI Light" FontSize="15" HorizontalAlignment="Right" />
                                                     <TextBlock Text="{Binding DownloadingStatus}" FontFamily="Segoe UI Light" FontSize="12" VerticalAlignment="Bottom" />
                                                 </StackPanel>
 
@@ -182,7 +179,7 @@
                                     </Grid>
                                 </Grid>
                                 <Grid Grid.Row="1">
-                                    <mah:MetroProgressBar mah:VisibilityHelper.IsVisible="{Binding IsDownloading}" Maximum="100" HorizontalAlignment="Stretch" Value="{Binding Percentage}"/>
+                                    <mah:MetroProgressBar mah:VisibilityHelper.IsVisible="{Binding IsDownloading}" IsIndeterminate="{Binding IsTotalSizeUnknown}" Maximum="100" HorizontalAlignment="Stretch" Value="{Binding Percentage}"/>
                                 </Grid> 
                             </Grid>
                         </DataTemplate>

@@ -1,4 +1,5 @@
 ﻿using HandyUtil.Text.Xsv;
+using SHM.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace SHM.Models
 {
     public class RawBrew : XsvDataRow
     {
+        public const char UnknownCharacter = '�';
         public string TitleId { get; set; }
         public string Name { get; set; }
         public string Author { get; set; }
@@ -18,12 +20,12 @@ namespace SHM.Models
 
         protected override void AttachFields()
         {
-            this.TitleId = this["Title ID"].AsString();
-            this.Name = this["Name"].AsString();
-            this.Author = this["Author"].AsString();
-            this.Version = this["Version"].AsString();
-            this.LastDirectLink = this["Last direct link"].AsString();
-            this.ReadmeLink = this["Readme Link"].AsString();
+            this.TitleId = this["Title ID"].AsString()?.ClearUnknownCharacters();
+            this.Name = this["Name"].AsString()?.ClearUnknownCharacters();
+            this.Author = this["Author"].AsString()?.ClearUnknownCharacters();
+            this.Version = this["Version"].AsString()?.ClearUnknownCharacters();
+            this.LastDirectLink = this["Last direct link"].AsString()?.ClearUnknownCharacters();
+            this.ReadmeLink = this["Readme Link"].AsString()?.ClearUnknownCharacters();
         }
 
         protected override void UpdateFields()
@@ -34,7 +36,6 @@ namespace SHM.Models
             this["Version"] = new XsvField(Version);
             this["Last direct link"] = new XsvField(LastDirectLink);
             this["Readme Link"] = new XsvField(ReadmeLink);
-
         }
     }
 }

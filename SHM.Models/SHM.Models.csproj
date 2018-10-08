@@ -91,5 +91,11 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SHM.Extensions\SHM.Extensions.csproj">
+      <Project>{02E194B4-F8DD-4D45-8FDA-99F1AE030FA6}</Project>
+      <Name>SHM.Extensions</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -86,14 +86,14 @@
                             </Button.Content>
                         </Button>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                            <Button Margin="1" Command="{Binding DataContext.LaunchCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}}" CommandParameter="{Binding Value.SourceUri}">
+                            <Button Margin="1" Width="36" Height="36" Command="{Binding DataContext.LaunchCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}}" CommandParameter="{Binding Value.SourceUri}">
                                 <Button.Content>
                                     <StackPanel Orientation="Horizontal">
                                         <icons:PackIconFontAwesome Kind="GithubBrands" VerticalAlignment="Center" />
                                     </StackPanel>
                                 </Button.Content>
                             </Button>
-                            <Button Margin="1" Command="{Binding DataContext.LaunchCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}}" CommandParameter="{Binding Value.ReleasePageUri}">
+                            <Button Margin="1" Width="36" Height="36"  Command="{Binding DataContext.LaunchCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}}" CommandParameter="{Binding Value.ReleasePageUri}">
                                 <Button.Content>
                                     <StackPanel Orientation="Horizontal">
                                         <icons:PackIconFontAwesome Kind="GlobeSolid" VerticalAlignment="Center" />
@@ -106,17 +106,14 @@
             </Grid>
             <Grid Grid.Row="1">
                 <StackPanel Orientation="Vertical" mah:VisibilityHelper.IsVisible="{Binding IsDownloading}">
-                    <mah:MetroProgressBar mah:VisibilityHelper.IsVisible="{Binding IsDownloading}" Maximum="100" HorizontalAlignment="Stretch" Value="{Binding Percentage}"/>
+                    <mah:MetroProgressBar mah:VisibilityHelper.IsVisible="{Binding IsDownloading}" IsIndeterminate="{Binding IsTotalSizeUnknown}" Maximum="100" HorizontalAlignment="Stretch" Value="{Binding Percentage}"/>
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="%" FontFamily="Segoe UI Light" Foreground="White" FontSize="12" />
-                                <TextBlock Text="{Binding Percentage}" FontFamily="Segoe UI Light" Foreground="White" FontSize="12" />
-                            </StackPanel>
+                            <TextBlock Text="{Binding Percentage, StringFormat={}{0}%}" mah:VisibilityHelper.IsHidden="{Binding IsTotalSizeUnknown}" FontFamily="Segoe UI Light" Foreground="White" FontSize="12" />
                         </Grid>
                         <Grid Grid.Column="1">
                             <TextBlock Text="{Binding DownloadingStatus}" FontFamily="Segoe UI Light" Foreground="White" FontSize="12" VerticalAlignment="Bottom" />

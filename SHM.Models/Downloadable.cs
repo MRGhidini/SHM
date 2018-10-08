@@ -40,11 +40,13 @@ namespace SHM.Models
 
         public CancellationTokenSource CancellationTokenSource { get; set; }
 
+        public bool IsTotalSizeUnknown => TotalSize.Bytes < 0;
+
         ByteSize totalSize, downloadedSize;
-        public ByteSize TotalSize { get { return totalSize; } set { Set(ref totalSize, value); RaisePropertyChanged(nameof(DownloadingStatus)); } }
+        public ByteSize TotalSize { get { return totalSize; } set { Set(ref totalSize, value); RaisePropertyChanged(nameof(DownloadingStatus)); RaisePropertyChanged(nameof(IsTotalSizeUnknown)); } }
         public ByteSize DownloadedSize { get { return downloadedSize; } set { Set(ref downloadedSize, value); RaisePropertyChanged(nameof(DownloadingStatus)); } }
 
-        public string DownloadingStatus => $"{DownloadedSize.ToString()}/{TotalSize.ToString()}";
+        public string DownloadingStatus => !IsTotalSizeUnknown ? $"{DownloadedSize.ToString()}/{TotalSize.ToString()}" : DownloadedSize.ToString();
 
         int percentage = 0;
         public int Percentage { get { return percentage; } set { Set(ref percentage, value); } }

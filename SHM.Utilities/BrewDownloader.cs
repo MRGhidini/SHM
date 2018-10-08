@@ -51,7 +51,8 @@ namespace SHM.Utilities
             {
                 downloadable.TotalSize = ByteSize.FromBytes(e.TotalBytesToReceive);
                 downloadable.DownloadedSize = ByteSize.FromBytes(e.BytesReceived);
-                downloadable.Percentage = e.ProgressPercentage;
+                if (!downloadable.IsTotalSizeUnknown)
+                    downloadable.Percentage = e.ProgressPercentage;
             };
             client.DownloadFileCompleted += (_, e) =>
             {
