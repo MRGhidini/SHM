@@ -29,15 +29,15 @@
         <Grid Grid.Row="1" Grid.Column="1">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
                     <RowDefinition />
+                    <RowDefinition Height="3*" />
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
                     <Button HorizontalAlignment="Stretch" Command="{Binding GoToDetailCommand}" CommandParameter="All" Margin="0,0,0,2">
                         <Button.Content>
                             <StackPanel Orientation="Horizontal">
-                                <icons:PackIconFontAwesome Kind="PlaystationBrands" VerticalAlignment="Center" Margin="0,0,5,0" />
-                                <TextBlock Text="All Platforms" FontFamily="Segoe UI Light"/>
+                                <icons:PackIconFontAwesome Kind="PlaystationBrands" VerticalAlignment="Center" Margin="0,0,5,0" Width="32" Height="32" />
+                                <TextBlock Text="All Platforms" FontFamily="Segoe UI Light" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </StackPanel>
                         </Button.Content>
                     </Button>
