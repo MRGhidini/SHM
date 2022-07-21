@@ -52,7 +52,11 @@ namespace SHM.Utilities
         public async Task<IEnumerable<RawVitaDbBrew>> RetrieveRawFromVitaDbAsync(string source = null)
         {
             source = source ?? Constants.VitaDBBrewsListUri;
-            return await Try.ItAsync(async () => await source.GetJsonAsync<List<RawVitaDbBrew>>()) ?? new List<RawVitaDbBrew>();
+            return await Try.ItAsync(async () => 
+                await source
+                    .WithHeader("User-Agent", "Other")
+                    .GetJsonAsync<List<RawVitaDbBrew>>())
+                ?? new List<RawVitaDbBrew>();
         }
 
         public bool IsKindRetrievable(BrewKind kind)
