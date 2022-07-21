@@ -188,6 +188,7 @@ namespace SHM
                 try
                 {
                     WebClient wc = new WebClient();
+                    wc.Headers.Add("User-Agent: Other");
                     string content = wc.DownloadString(new Uri(path));
                     wc.Dispose();
                     content = Encoding.UTF8.GetString(Encoding.Default.GetBytes(content));
